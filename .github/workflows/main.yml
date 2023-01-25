@@ -21,6 +21,7 @@ jobs:
           scripts/build.sh \
           --arch x64 \
           --release-type WIF \
+          --remove-amazon \
           --magisk-ver stable \
           --gapps-brand MindTheGapps \
           --gapps-variant pico \
