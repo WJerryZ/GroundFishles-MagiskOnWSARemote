@@ -7,9 +7,8 @@ jobs:
     steps:
       - name: Install dependencies
         run: |
-          sudo apt-get update && sudo apt-get install -y setools lzip wine patchelf e2fsprogs python3-pip aria2 p7zip-full attr xz-utils unzip cabextract
+          sudo apt update && sudo apt install -y setools lzip wine patchelf e2fsprogs python3-pip aria2 p7zip-full attr xz-utils unzip cabextract
           sudo wget -P /usr/local/bin/ https://raw.githubusercontent.com/Winetricks/winetricks/master/src/winetricks
-          sudo chmod +x /usr/local/bin/winetricks
           pip list --disable-pip-version-check | grep -E "^requests " >/dev/null 2>&1 || python3 -m pip install requests
           winetricks list-installed | grep -E "^msxml6" >/dev/null 2>&1 || winetricks msxml6 || abort
       - uses: actions/checkout@v3
@@ -42,4 +41,4 @@ jobs:
           token: ${{ github.token }}
           repository: ${{ github.repository }}
           retain_days: 0
-          keep_minimum_runs: 5
+          keep_minimum_runs: 1
