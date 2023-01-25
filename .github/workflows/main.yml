@@ -20,7 +20,7 @@ jobs:
       - uses: actions/checkout@v3
         with:
           submodules: recursive
-      - name: Build Magusk On WSA
+      - name: Build WSA
         run: |
           cd ./MagiskOnWSALocal
           scripts/build.sh \
@@ -31,20 +31,16 @@ jobs:
           --gapps-variant pico \
           --remove-amazon \
           --root-sol magisk
-          ls -l
       - name: Archiving and compressing artifact
         run: |
           cd MagiskOnWSALocal/output
           7z a -tzip -mx=9 ../WSA.zip .
           cd ../..
-      - name: Upload build to release
-        uses: svenstaro/upload-release-action@v2
+      - name: Upload Asset
+        uses: softprops/action-gh-release@v1
         with:
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: ./output/WSA.zip
-          asset_name: WSA.zip
-          tag: WSA
-          overwrite: true
+            files: ./output/WSA.zip
+            tag_name: WSA
       - name: Delete workflow runs
         uses: Mattraks/delete-workflow-runs@v2
         with:
