@@ -1,8 +1,6 @@
 name: CI
-
 on:
   workflow_dispatch:
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -30,13 +28,13 @@ jobs:
       - name: Archiving and compressing artifact
         run: |
           cd MagiskOnWSALocal/output
-          7z a -tzip -mx=9 ../WSA.zip .
+          7z a -tzip -mx=0 ../WSA.zip .
           cd ../..
       - name: Upload Asset
         uses: softprops/action-gh-release@v1
         with:
-            files: ./output/WSA.zip
-            tag_name: WSA
+          files: ./output/WSA.zip
+          tag_name: WSA
       - name: Delete workflow runs
         uses: Mattraks/delete-workflow-runs@v2
         with:
