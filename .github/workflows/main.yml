@@ -28,9 +28,9 @@ jobs:
       - name: Archiving and compressing artifact
         run: |
           cd MagiskOnWSALocal/output
-          7z a -tzip -mx=1 ../WSA.zip .
+          7z a -tzip -mx=3 ../WSA.zip .
           cd ../..
-      - name: Upload Asset
+      - name: Upload a Release Asset
         uses: softprops/action-gh-release@v1
         with:
           files: MagiskOnWSALocal/WSA.zip
@@ -41,4 +41,4 @@ jobs:
           token: ${{ github.token }}
           repository: ${{ github.repository }}
           retain_days: 0
-          keep_minimum_runs: 0
+          keep_minimum_runs: 3
