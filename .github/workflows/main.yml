@@ -28,7 +28,7 @@ jobs:
       - name: Archiving and compressing artifact
         run: |
           cd MagiskOnWSALocal/output
-          7z a -tzip -mx=3 ../WSA.zip .
+          7z a -tzip -mx=5 ../WSA.zip .
           cd ../..
       - name: Upload a Release Asset
         uses: softprops/action-gh-release@v1
