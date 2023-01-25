@@ -25,12 +25,11 @@ jobs:
           --magisk-ver stable \
           --gapps-brand MindTheGapps \
           --gapps-variant pico \
-          --remove-amazon \
           --root-sol magisk
       - name: Archiving and compressing artifact
         run: |
           cd MagiskOnWSALocal/output
-          7z a -tzip -mx=0 ../WSA.zip .
+          7z a -tzip -mx=2 ../WSA.zip .
           cd ../..
       - name: Upload Asset
         uses: softprops/action-gh-release@v1
