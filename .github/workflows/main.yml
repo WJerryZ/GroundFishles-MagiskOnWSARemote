@@ -18,7 +18,7 @@ jobs:
       - name: Build WSA
         run: |
           cd ./MagiskOnWSALocal
-          scripts/build.sh
+          scripts/build.sh \
           --arch x64
           --release-type WIF
           --remove-amazon
