@@ -14,7 +14,9 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y setools lzip wine patchelf e2fsprogs aria2 python3 attr
+          sudo apt-get install -y setools lzip wine winetricks patchelf e2fsprogs python3-pip aria2 p7zip-full attr xz-utils unzip cabextract
+          python3 -m pip install requests
+          winetricks msxml6
       - uses: actions/checkout@v3
         with:
           submodules: recursive
@@ -22,7 +24,7 @@ jobs:
         run: |
           cd ./MagiskOnWSALocal
           scripts/build.sh \
-          --arch arm64 \
+          --arch x64 \
           --release-type WIF \
           --magisk-ver stable \
           --gapps-brand MindTheGapps \
@@ -30,3 +32,23 @@ jobs:
           --remove-amazon \
           --root-sol magisk
           ls -l
+      - name: Archiving and compressing artifact
+        run: |
+          cd MagiskOnWSALocal/output
+          7z a -tzip -mx=9 ../WSA.zip .
+          cd ../..
+      - name: Upload build to release
+        uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: ./output/WSA.zip
+          asset_name: WSA.zip
+          tag: WSA
+          overwrite: true
+      - name: Delete workflow runs
+        uses: Mattraks/delete-workflow-runs@v2
+        with:
+          token: ${{ github.token }}
+          repository: ${{ github.repository }}
+          retain_days: 0
+          keep_minimum_runs: 0
