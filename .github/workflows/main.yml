@@ -11,7 +11,7 @@ jobs:
           sudo wget -P /usr/local/bin/ https://raw.githubusercontent.com/Winetricks/winetricks/master/src/winetricks
           sudo chmod +x /usr/local/bin/winetricks
           pip list --disable-pip-version-check && python3 -m pip install requests
-          winetricks msxml6 && abort
+          winetricks msxml6
       - uses: actions/checkout@v3
         with:
           submodules: recursive
