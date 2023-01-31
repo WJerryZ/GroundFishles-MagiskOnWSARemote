@@ -33,7 +33,7 @@ jobs:
       - name: Upload a Release Asset
         uses: softprops/action-gh-release@v1
         with:
-          files: MagiskOnWSALocal/*
+          files: MagiskOnWSALocal/*.zip
           tag_name: WSA
       - name: Delete workflow runs
         uses: Mattraks/delete-workflow-runs@v2
