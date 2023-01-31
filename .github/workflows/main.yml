@@ -20,12 +20,12 @@ jobs:
           cd ./MagiskOnWSALocal
           scripts/build.sh \
           --arch x64 \
-          --release-type WIF \
+          --release-type RP \
           --remove-amazon \
           --magisk-ver stable \
-          --gapps-brand MindTheGapps \
+          --gapps-brand none \
           --gapps-variant pico \
-          --root-sol magisk
+          --root-sol none
       - name: Archiving and compressing artifact
         run: |
           cd MagiskOnWSALocal/output
