@@ -1,4 +1,4 @@
-name: Custom Build WSA
+name: Build WSA
 on:
  workflow_dispatch:
   inputs:
@@ -34,7 +34,7 @@ on:
     default: "stable"
 jobs:
   build:
-    runs-on: debian-latest
+    runs-on: ubuntu-latest
     steps:
       - name: Install dependencies
         run: |
@@ -61,7 +61,7 @@ jobs:
         run: |
           cd MagiskOnWSALocal/output
           7z a -tzip -mx=4 -saa *
-      - name: Upload a Release Asset
+      - name: Upload Files
         uses: actions/upload-artifact@v3
         with:
           name: WSA
