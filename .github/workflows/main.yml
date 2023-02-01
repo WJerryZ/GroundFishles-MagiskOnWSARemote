@@ -62,8 +62,10 @@ jobs:
           cd MagiskOnWSALocal
           7z a -t7z WSA.7z ./output/*
       - name: Upload Files
-        run: |
-          ls
+        uses: actions/upload-artifact@v3
+        with:
+          name: WSA
+          path: MagiskOnWSALocal/WSA.7z
       - name: Delete workflow runs
         uses: Mattraks/delete-workflow-runs@v2
         with:
