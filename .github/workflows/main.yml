@@ -65,7 +65,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: WSA
-          path: /home/runner/work/MagiskOnWSARemote/MagiskOnWSARemote/MagiskOnWSALocal/WSA.zip
+          path: MagiskOnWSALocal/output/WSA.zip
       - name: Delete workflow runs
         uses: Mattraks/delete-workflow-runs@v2
         with:
