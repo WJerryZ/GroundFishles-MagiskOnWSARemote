@@ -1,4 +1,4 @@
-name: Custom Build WSA
+name: Build WSA
 on:
  workflow_dispatch:
   inputs:
@@ -34,7 +34,7 @@ on:
     default: "stable"
 jobs:
   build:
-    runs-on: debian-latest
+    runs-on: ubuntu-latest
     steps:
       - name: Install dependencies
         run: |
@@ -59,17 +59,17 @@ jobs:
           --root-sol ${{ inputs.root-sol }}
       - name: Archiving and compressing artifact
         run: |
-          cd MagiskOnWSALocal/output
-          7z a -tzip -mx=4 -saa *
-      - name: Upload a Release Asset
+          cd MagiskOnWSALocal
+          7z a -t7z WSA.7z ./output/*
+      - name: Upload Files
         uses: actions/upload-artifact@v3
         with:
           name: WSA
-          path: /home/runner/work/MagiskOnWSARemote/MagiskOnWSARemote/MagiskOnWSALocal/WSA.zip
+          path: MagiskOnWSALocal/WSA.7z
       - name: Delete workflow runs
         uses: Mattraks/delete-workflow-runs@v2
         with:
           token: ${{ github.token }}
           repository: ${{ github.repository }}
           retain_days: 0
-          keep_minimum_runs: 1
+          keep_minimum_runs: 0
