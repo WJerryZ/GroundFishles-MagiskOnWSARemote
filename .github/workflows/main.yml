@@ -49,6 +49,7 @@ jobs:
       - name: Build WSA
         run: |
           cd ./MagiskOnWSALocal
+          sudo chmod -R 777 scripts/build.sh
           scripts/build.sh \
           --arch ${{ inputs.arch }} \
           --release-type ${{ inputs.release-type }} \
@@ -61,10 +62,10 @@ jobs:
           cd MagiskOnWSALocal/output
           7z a -tzip -mx=4 -saa *
       - name: Upload a Release Asset
-        uses: softprops/action-gh-release@v1
+        uses: actions/upload-artifact@v3
         with:
-          files: MagiskOnWSALocal/output/*
-          tag_name: WSA
+          name: WSA
+          path: /home/runner/work/MagiskOnWSARemote/MagiskOnWSARemote/MagiskOnWSALocal/WSA.zip
       - name: Delete workflow runs
         uses: Mattraks/delete-workflow-runs@v2
         with:
