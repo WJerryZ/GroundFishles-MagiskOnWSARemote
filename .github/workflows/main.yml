@@ -59,8 +59,8 @@ jobs:
           --root-sol ${{ inputs.root-sol }}
       - name: Archiving and compressing artifact
         run: |
-          cd MagiskOnWSALocal/output
-          7z a -tzip -mx=4 -saa *
+          cd MagiskOnWSALocal
+          7z a -t7z WSA.7z ./output/*
       - name: Upload Files
         run: |
           ls
