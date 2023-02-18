@@ -32,6 +32,12 @@ on:
     required: true
     options: ["stable","beta","canary","debug"]
     default: "stable"
+   remove-amazon:
+    type: choice
+    description: Remove or keep Amazon Appstore
+    required: true
+    options: [--remove-amazon, Keep Amazon]
+    default: --remove-amazon
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -53,7 +59,7 @@ jobs:
           scripts/build.sh \
           --arch ${{ inputs.arch }} \
           --release-type ${{ inputs.release-type }} \
-          --remove-amazon \
+          ${{ inputs.remove-amazon }} \
           --magisk-ver ${{ inputs.magisk-ver }} \
           --gapps-brand ${{ inputs.gapps-brand }} \
           --root-sol ${{ inputs.root-sol }}
