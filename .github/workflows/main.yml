@@ -72,8 +72,7 @@ jobs:
         shell: bash
         run: |
           cd MagiskOnWSALocal/output/
-          echo "wsaname=$(ls *.zip)" >> $GITHUB_ENV
-          echo "wsafd=$(ls -d */)" >> $GITHUB_ENV
+          echo "wsaname=$(basename $(ls *.zip) .zip)" >> $GITHUB_ENV
       - name: Upload Release Asset
         uses: softprops/action-gh-release@v1
         with:
@@ -84,7 +83,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: ${{ env.wsaname }}
-          path: MagiskOnWSALocal/output/${{ env.wsafd }}
+          path: MagiskOnWSALocal/output/${{ env.wsaname }}/
       - name: Delete workflow runs
         uses: Mattraks/delete-workflow-runs@v2
         with:
