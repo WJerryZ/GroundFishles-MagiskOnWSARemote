@@ -71,8 +71,8 @@ jobs:
       - name: Get WSA version tag
         shell: bash
         run: |
-          echo "wsaname=$(ls ./MagiskOnWSALocal/output/*.zip)" >> $GITHUB_ENV
           cd MagiskOnWSALocal/output/
+          echo "wsaname=$(ls *.zip)" >> $GITHUB_ENV
           echo "wsafd=$(ls -d */)" >> $GITHUB_ENV
       - name: Upload Release Asset
         uses: softprops/action-gh-release@v1
